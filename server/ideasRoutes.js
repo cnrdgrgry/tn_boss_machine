@@ -26,8 +26,11 @@ router.get("/", (req, res) => {
 });
 
 router.post("/", (req, res) => {
+	const ideas = getAllFromDatabase("ideas");
 	//create a new idea and save to the db
-	const addIdea = addToDatabase("ideas", req.body);
+	const newId = ideas.length + 1;
+	const newIdea = { id: newId, ...req.body };
+	const addIdea = addToDatabase("ideas", newIdea);
 	if (addIdea) {
 		res.status(201).json(addIdea);
 	} else {

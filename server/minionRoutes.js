@@ -26,8 +26,11 @@ router.get("/", (req, res) => {
 });
 
 router.post("/", (req, res) => {
+	const minions = getAllFromDatabase("minions");
 	//create a new minion and save to the db
-	const addMinion = addToDatabase("minions", req.body);
+	const newId = minions.length + 1;
+	const newMinion = { id: newId, ...req.body };
+	const addMinion = addToDatabase("minions", newMinion);
 	if (addMinion) {
 		res.status(201).json(addMinion);
 	} else {
