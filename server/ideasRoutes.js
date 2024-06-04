@@ -28,16 +28,20 @@ router.get("/", (req, res) => {
 	}
 });
 
-router.post("/", checkMillionDollarIdea, (req, res) => {
-	const ideas = getAllFromDatabase("ideas");
-	//create a new idea and save to the db
-	const newId = ideas.length + 1;
-	const newIdea = { id: newId, ...req.body };
-	const addIdea = addToDatabase("ideas", newIdea);
-	if (addIdea) {
-		res.status(201).json(addIdea);
-	} else {
-		res.status(500).json({ error: "Error 500: Error adding Idea!" });
+router.post("/", checkMillionDollarIdea, async (req, res) => {
+	try {
+		const ideas = await getAllFromDatabase("ideas");
+		// Create a new idea and save to the db
+		const newId = ideas.length + 1;
+		const newIdea = { id: newId, ...req.body };
+		const addIdea = await addToDatabase("ideas", newIdea);
+		if (addIdea) {
+			res.status(201).json(addIdea);
+		} else {
+			res.status(500).json({ error: "Error 500: Error adding Idea!" });
+		}
+	} catch (error) {
+		res.status(500).json({ error: error.message });
 	}
 });
 
