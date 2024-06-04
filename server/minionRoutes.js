@@ -29,7 +29,7 @@ router.post("/", (req, res) => {
 	//create a new minion and save to the db
 	const addMinion = addToDatabase("minions", req.body);
 	if (addMinion) {
-		res.status(200).json(addMinion);
+		res.status(201).json(addMinion);
 	} else {
 		res.status(500).json({ error: "Error 500: Error making minion!" });
 	}
@@ -52,12 +52,12 @@ router.put("/:minionId", (req, res) => {
 	if (minionId) {
 		const updateMinion = updateInstanceInDatabase("minions", req.body);
 		if (updateMinion) {
-			res.status(201).json(updateMinion);
+			res.status(200).json(updateMinion);
 		} else {
 			res.status(500).json({ error: "Error 500: Error updating minion!" });
 		}
 	} else {
-		res.status(500).json({ error: "Error 500: Invalid information supplied" });
+		res.status(400).json({ error: "Error 400: Invalid information supplied" });
 	}
 });
 
@@ -73,7 +73,7 @@ router.delete("/:minionId", (req, res) => {
 			res.status(400).json({ error: "Error 400: Error deleting minion!" });
 		}
 	} else {
-		res.status(204).json({ error: "Error 204: Invalid information supplied" });
+		res.status(400).json({ error: "Error 400: Invalid information supplied" });
 	}
 });
 
