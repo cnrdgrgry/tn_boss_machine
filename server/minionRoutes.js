@@ -3,7 +3,7 @@
 const express = require("express");
 const router = express.Router();
 
-//requiring database + helperfunctions.
+//requiring database + helper functions.
 
 const {
 	getAllFromDatabase,
@@ -16,7 +16,7 @@ const {
 //defining the routes
 
 router.get("/", (req, res) => {
-	//get an array of all
+	//get all from db
 	const minions = getAllFromDatabase("minions");
 	if (minions) {
 		res.status(200).json(minions);
