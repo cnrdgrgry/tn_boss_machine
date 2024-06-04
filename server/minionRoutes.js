@@ -64,6 +64,17 @@ router.put("/:minionId", (req, res) => {
 router.delete("/:minionId", (req, res) => {
 	const { minionId } = req.params;
 	//delete a single minion by id
+
+	if (minionId) {
+		const deleteMinion = deleteFromDatabasebyId("minions", minionId);
+		if (deleteMinion) {
+			res.status(204).json();
+		} else {
+			res.status(400).json({ error: "Error 400: Error deleting minion!" });
+		}
+	} else {
+		res.status(204).json({ error: "Error 204: Invalid information supplied" });
+	}
 });
 
 // exporting the router
