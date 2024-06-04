@@ -46,12 +46,22 @@ router.get("/:minionId", (req, res) => {
 	}
 });
 
-router.put("/", (req, res) => {
+router.put("/:minionId", (req, res) => {
 	const { minionId } = req.params;
 	//update a single minion by id
+	if (minionId) {
+		const updateMinion = updateInstanceInDatabase("minions", req.body);
+		if (updateMinion) {
+			res.status(201).json(updateMinion);
+		} else {
+			res.status(500).json({ error: "Error 500: Error updating minion!" });
+		}
+	} else {
+		res.status(500).json({ error: "Error 500: Invalid information supplied" });
+	}
 });
 
-router.delete("/", (req, res) => {
+router.delete("/:minionId", (req, res) => {
 	const { minionId } = req.params;
 	//delete a single minion by id
 });
