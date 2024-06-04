@@ -3,8 +3,8 @@ const apiRouter = express.Router();
 
 //Import in and mount minion routes
 
-const minionsRoutes = require("./minionsRoutes");
-apiRouter.use("./minions", minionsRoutes);
+const minionRoutes = require("./minionRoutes");
+apiRouter.use("./minions", minionRoutes);
 
 //exporting apiRouter
 module.exports = apiRouter;
