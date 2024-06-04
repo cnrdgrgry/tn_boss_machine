@@ -60,7 +60,7 @@ router.put("/:ideaId", (req, res) => {
 		if (updateIdea) {
 			res.status(200).json(updateIdea);
 		} else {
-			res.status(500).json({ error: "Error 500: Error updating the idea!" });
+			res.status(404).json({ error: "Error 404: Error updating the idea!" });
 		}
 	} else {
 		res.status(400).json({ error: "Error 400: Invalid information supplied" });
@@ -76,7 +76,7 @@ router.delete("/:ideaId", (req, res) => {
 		if (deleteIdea) {
 			res.status(204).json();
 		} else {
-			res.status(400).json({ error: "Error 400: Error deleting idea!" });
+			res.status(404).json({ error: "Error 404: Error deleting idea!" });
 		}
 	} else {
 		res.status(400).json({ error: "Error 400: Invalid information supplied" });

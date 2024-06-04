@@ -57,7 +57,7 @@ router.put("/:minionId", (req, res) => {
 		if (updateMinion) {
 			res.status(200).json(updateMinion);
 		} else {
-			res.status(500).json({ error: "Error 500: Error updating minion!" });
+			res.status(404).json({ error: "Error 404: Error updating minion!" });
 		}
 	} else {
 		res.status(400).json({ error: "Error 400: Invalid information supplied" });
@@ -73,7 +73,7 @@ router.delete("/:minionId", (req, res) => {
 		if (deleteMinion) {
 			res.status(204).json();
 		} else {
-			res.status(400).json({ error: "Error 400: Error deleting minion!" });
+			res.status(404).json({ error: "Error 404: Error deleting minion!" });
 		}
 	} else {
 		res.status(400).json({ error: "Error 400: Invalid information supplied" });

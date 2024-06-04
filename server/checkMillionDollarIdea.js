@@ -4,10 +4,7 @@ const checkMillionDollarIdea = (req, res, next) => {
 	if (Revenue >= 1000000) {
 		next();
 	} else {
-		res.status(400).json({
-			error:
-				"Error 400; Bad request, potential revenue is not One Million Dollar!",
-		});
+		res.status(400);
 	}
 };
 
