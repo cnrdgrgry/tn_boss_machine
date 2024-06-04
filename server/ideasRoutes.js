@@ -41,7 +41,9 @@ router.post("/", checkMillionDollarIdea, async (req, res) => {
 			res.status(500).json({ error: "Error 500: Error adding Idea!" });
 		}
 	} catch (error) {
-		res.status(500).json({ error: error.message });
+		res
+			.status(500)
+			.json({ error: "Dang man, that jus diddn werk naw didna it?" });
 	}
 });
 
