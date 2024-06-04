@@ -13,6 +13,9 @@ const {
 	deleteFromDatabasebyId,
 } = require("./db");
 
+//Require custom middleWare checkMillionDollarIdea
+const checkMillionDollarIdea = require("./checkMillionDollarIdea");
+
 //defining the routes
 
 router.get("/", (req, res) => {
@@ -25,7 +28,7 @@ router.get("/", (req, res) => {
 	}
 });
 
-router.post("/", (req, res) => {
+router.post("/", checkMillionDollarIdea, (req, res) => {
 	const ideas = getAllFromDatabase("ideas");
 	//create a new idea and save to the db
 	const newId = ideas.length + 1;
