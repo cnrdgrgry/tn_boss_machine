@@ -38,6 +38,12 @@ router.post("/", (req, res) => {
 router.get("/:minionId", (req, res) => {
 	const { minionId } = req.params;
 	//get a single minion by id
+	const getMinion = getFromDatabaseById("minions", minionId);
+	if (getMinion) {
+		res.status(200).json(getMinion);
+	} else {
+		res.status(404).json({ error: "Error 404; Resource not found!" });
+	}
 });
 
 router.put("/", (req, res) => {
