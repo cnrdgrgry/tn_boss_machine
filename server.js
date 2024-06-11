@@ -28,3 +28,5 @@ if (!module.parent) {
 		console.log(`CORS enabled and listening on port ${PORT}`);
 	});
 }
+
+app.use(express.static("public"));
